@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addProduct, delProduct, sumProductInCart, priceCart, promoCode } from "../src/cart";
+import { addProduct, delProduct, countProductInCart, priceCart, promoCode } from "../src/cart";
 
 export type Product = {
   id: string;
@@ -124,7 +124,7 @@ describe("cart module / delete an inexisting product", () => {
 
 describe("cart module / find number of product in cart", () => {
   it("should return the number of product in cart", () => {
-    const result: any = sumProductInCart(cart);
+    const result: any = countProductInCart(cart);
     expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });

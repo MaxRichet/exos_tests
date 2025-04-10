@@ -56,7 +56,7 @@ export function delProduct(product: Product, cart: Product[]): result{
   }
 }
 
-export function sumProductInCart(cart: Product[]): result{
+export function countProductInCart(cart: Product[]): result{
   let result = cart.length;
   return {
     statusCode: 200,
@@ -65,7 +65,14 @@ export function sumProductInCart(cart: Product[]): result{
 }
 
 export function priceCart(product: Product, cart: Product[]): result{
-  return;
+  let result = 0;
+  for(let i: number = 0; i <= cart.length - 1; i++){
+    result += cart[i].price;
+  }
+  return {
+    statusCode: 200,
+    message: `the cart cost ${result}e`,
+  };
 }
 
 export function promoCode(product: Product, cart: Product[]): result{
