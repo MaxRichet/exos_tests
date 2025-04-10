@@ -71,10 +71,14 @@ export function priceCart(product: Product, cart: Product[]): result{
   }
   return {
     statusCode: 200,
-    message: `the cart cost ${result}e`,
+    message: `The cart cost ${result}e`,
   };
 }
 
-export function promoCode(product: Product, cart: Product[]): result{
-  return;
+export function promoCode(product: Product, percentage: number): result{
+  const priceAfterPromoCode = product.price * (1 - percentage / 100);
+  return {
+    statusCode: 200,
+    message: `The price after promo code is ${priceAfterPromoCode}e`,
+  };
 }

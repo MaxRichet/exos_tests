@@ -142,7 +142,7 @@ describe("cart module / find the price of all product in cart", () => {
 
 describe("cart module / apply a promo code", () => {
   it("should apply a promo code", () => {
-    const result: any = promoCode(product, cart);
+    const result: any = promoCode(product, 10);
     expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
