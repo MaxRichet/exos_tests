@@ -58,28 +58,28 @@ const existingProduct: Product = {
 describe("cart module / add product", () => {
   it("should add a product to the cart", () => {
     const result: any = addProduct(product, cart);
-    expect(result).toBe('200');
+    expect(result).toBe({statusCode: 200, message: result.message});
   });
 });
 
 describe("cart module / add an existing product", () => {
   it("should add 1 to quantity", () => {
     const result: any = addProduct(product, cart);
-    expect(result).toBe('400');
+    expect(result).toBe({statusCode: 400, message: result.message});
   });
 });
 
 describe("cart module / add a product with negative price", () => {
   it("return an error", () => {
     const result: any = addProduct(product, cart);
-    expect(result).toBe('400');
+    expect(result).toBe({statusCode: 400, message: result.message});
   });
 });
 
 describe("cart module / add a product with null quantity", () => {
   it("return an error", () => {
     const result: any = addProduct(product, cart);
-    expect(result).toBe('400');
+    expect(result).toBe({statusCode: 400, message: result.message});
   });
 });
 
@@ -88,14 +88,14 @@ describe("cart module / add a product with null quantity", () => {
 describe("cart module / delete a product", () => {
   it("should delete a product", () => {
     const result: any = delProduct(product, cart);
-    expect(result).toBe('200');
+    expect(result).toBe({statusCode: 200, message: result.message});
   });
 });
 
 describe("cart module / delete an existing product", () => {
   it("should return an error", () => {
     const result: any = delProduct(product, cart);
-    expect(result).toBe('400');
+    expect(result).toBe({statusCode: 400, message: result.message});
   });
 });
 
@@ -104,7 +104,7 @@ describe("cart module / delete an existing product", () => {
 describe("cart module / find number of product in cart", () => {
   it("should return the number of product in cart", () => {
     const result: any = sumProductInCart(cart);
-    expect(result).toBe('200');
+    expect(result).toBe({statusCode: 200, message: result.message});
   });
 });
 
@@ -113,7 +113,7 @@ describe("cart module / find number of product in cart", () => {
 describe("cart module / find the price of all product in cart", () => {
   it("should return the price of the cart", () => {
     const result: any = priceCart(product, cart);
-    expect(result).toBe('200');
+    expect(result).toBe({statusCode: 200, message: result.message});
   });
 });
 
@@ -122,6 +122,6 @@ describe("cart module / find the price of all product in cart", () => {
 describe("cart module / apply a promo code", () => {
   it("should apply a promo code", () => {
     const result: any = promoCode(product, cart);
-    expect(result).toBe('200');
+    expect(result).toBe({statusCode: 200, message: result.message});
   });
 });
