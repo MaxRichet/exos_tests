@@ -16,7 +16,28 @@ type result = {
 // TODO: implémenter le module cart ici
 
 export function addProduct(product: Product, cart: Product[]): result{
-  return;
+  const productSchema = Product.safeParse(product);
+  if (!productSchema.success || product.price <= 0 || product.quantity <= 0) {
+    return {
+      statusCode: 400,
+      message: "Invalid product",
+    };
+  } else {
+    const existingProduct: Product | undefined = cart.find((p) => p.id === product.id);
+    if(existingProduct){
+      existingProduct.quantity += product.quantity;
+      return {
+        statusCode: 200,
+        message: "Product quantity updated in cart",
+      };
+    } else {
+      cart.push(product);
+      return {
+        statusCode: 200,
+        message: "Product added in cart",
+      };
+    }
+  }
 }
 
 export function delProduct(product: Product, cart: Product[]): result{

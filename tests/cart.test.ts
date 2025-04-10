@@ -51,6 +51,20 @@ const existingProduct: Product = {
   quantity: 1,
 };
 
+const negativePriceProduct: Product = {
+  id: "50",
+  name: "Product 50",
+  price: -10,
+  quantity: 1,
+};
+
+const negativeQuantityProduct: Product = {
+  id: "51",
+  name: "Product 51",
+  price: 10,
+  quantity: -1,
+};
+
 //
 
 // Add a product tests
@@ -58,28 +72,28 @@ const existingProduct: Product = {
 describe("cart module / add product", () => {
   it("should add a product to the cart", () => {
     const result: any = addProduct(product, cart);
-    expect(result).toBe({statusCode: 200, message: result.message});
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
 
 describe("cart module / add an existing product", () => {
   it("should add 1 to quantity", () => {
-    const result: any = addProduct(product, cart);
-    expect(result).toBe({statusCode: 400, message: result.message});
+    const result: any = addProduct(existingProduct, cart);
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
 
 describe("cart module / add a product with negative price", () => {
   it("return an error", () => {
-    const result: any = addProduct(product, cart);
-    expect(result).toBe({statusCode: 400, message: result.message});
+    const result: any = addProduct(negativePriceProduct, cart);
+    expect(result).toStrictEqual({statusCode: 400, message: result.message});
   });
 });
 
 describe("cart module / add a product with null quantity", () => {
   it("return an error", () => {
-    const result: any = addProduct(product, cart);
-    expect(result).toBe({statusCode: 400, message: result.message});
+    const result: any = addProduct(negativeQuantityProduct, cart);
+    expect(result).toStrictEqual({statusCode: 400, message: result.message});
   });
 });
 
