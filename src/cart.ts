@@ -41,7 +41,20 @@ export function addProduct(product: Product, cart: Product[]): result{
 }
 
 export function delProduct(product: Product, cart: Product[]): result{
-  return;
+  const existingProduct: Product | undefined = cart.find((p) => p.id === product.id);
+  console.log(existingProduct);
+  if(existingProduct){
+    const newCart = cart.filter(x => x.id !== existingProduct.id);
+    return {
+      statusCode: 200,
+      message: `Product deleted in cart ${newCart}`,
+    };
+  } else {
+    return {
+      statusCode: 400,
+      message: "Invalid product",
+    };
+  }
 }
 
 export function sumProductInCart(cart: Product[]): result{

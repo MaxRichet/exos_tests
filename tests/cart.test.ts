@@ -39,7 +39,14 @@ let cart: Product[] = [
 
 const product: Product = {
   id: "1",
-  name: "Test Product",
+  name: "Prouct 1",
+  price: 10,
+  quantity: 1,
+};
+
+const inexistingProduct: Product = {
+  id: "999",
+  name: "Product 999",
   price: 10,
   quantity: 1,
 };
@@ -101,15 +108,15 @@ describe("cart module / add a product with null quantity", () => {
 
 describe("cart module / delete a product", () => {
   it("should delete a product", () => {
-    const result: any = delProduct(product, cart);
-    expect(result).toBe({statusCode: 200, message: result.message});
+    const result: any = delProduct(existingProduct, cart);
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
 
-describe("cart module / delete an existing product", () => {
+describe("cart module / delete an inexisting product", () => {
   it("should return an error", () => {
-    const result: any = delProduct(product, cart);
-    expect(result).toBe({statusCode: 400, message: result.message});
+    const result: any = delProduct(inexistingProduct, cart);
+    expect(result).toStrictEqual({statusCode: 400, message: result.message});
   });
 });
 
@@ -118,7 +125,7 @@ describe("cart module / delete an existing product", () => {
 describe("cart module / find number of product in cart", () => {
   it("should return the number of product in cart", () => {
     const result: any = sumProductInCart(cart);
-    expect(result).toBe({statusCode: 200, message: result.message});
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
 
@@ -127,7 +134,7 @@ describe("cart module / find number of product in cart", () => {
 describe("cart module / find the price of all product in cart", () => {
   it("should return the price of the cart", () => {
     const result: any = priceCart(product, cart);
-    expect(result).toBe({statusCode: 200, message: result.message});
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
 
@@ -136,6 +143,6 @@ describe("cart module / find the price of all product in cart", () => {
 describe("cart module / apply a promo code", () => {
   it("should apply a promo code", () => {
     const result: any = promoCode(product, cart);
-    expect(result).toBe({statusCode: 200, message: result.message});
+    expect(result).toStrictEqual({statusCode: 200, message: result.message});
   });
 });
