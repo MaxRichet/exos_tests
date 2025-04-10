@@ -42,7 +42,6 @@ export function addProduct(product: Product, cart: Product[]): result{
 
 export function delProduct(product: Product, cart: Product[]): result{
   const existingProduct: Product | undefined = cart.find((p) => p.id === product.id);
-  console.log(existingProduct);
   if(existingProduct){
     const newCart = cart.filter(x => x.id !== existingProduct.id);
     return {
@@ -58,7 +57,11 @@ export function delProduct(product: Product, cart: Product[]): result{
 }
 
 export function sumProductInCart(cart: Product[]): result{
-  return;
+  let result = cart.length;
+  return {
+    statusCode: 200,
+    message: result > 1 ? `${result} products in cart` : `${result} product in cart`,
+  };
 }
 
 export function priceCart(product: Product, cart: Product[]): result{
